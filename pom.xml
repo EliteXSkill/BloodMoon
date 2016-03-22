@@ -158,6 +158,11 @@
                             <shadedPattern>uk.co.jacekk.bukkit.baseplugin.v${baseplugin.package}</shadedPattern>
                         </relocation>
                     </relocations>
+                    <!-- remove unnecessary stuff -->
+                    <minimizeJar>true</minimizeJar>
+                    <!-- utterly useless artifact from shade 2.x -->
+                    <createDependencyReducedPom>false</createDependencyReducedPom>
+                    <!-- Le fichier jar d'origine est renommé en original-XXXX.jar -->
                     <shadedArtifactAttached>false</shadedArtifactAttached>
                 </configuration>
             </plugin>
@@ -168,6 +173,7 @@
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>2.6</version>
                 <configuration>
+                    <finalName>${project.build.finalName}</finalName>
                     <archive>
                         <addMavenDescriptor>false</addMavenDescriptor>
                         <manifestEntries>
@@ -176,7 +182,7 @@
                             <!-- <Build-Number>${BUILD_NUMBER}</Build-Number> -->
                         </manifestEntries>
                     </archive>
-                    <outputDirectory>../../Server/plugins</outputDirectory>
+                    <!-- <outputDirectory>../../Server/plugins</outputDirectory> -->
                 </configuration>
             </plugin>
         </plugins>
